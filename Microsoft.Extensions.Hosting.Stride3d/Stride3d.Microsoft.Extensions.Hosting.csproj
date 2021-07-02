@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Microsoft.Extensions.Hosting.Stride3d</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>5.0.0</Version>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <Authors>Adam Johnson</Authors>
+    <Description>Hosting lifetime for Stride3d</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/spasarto/Microsoft.Extensions.Hosting.Stride3d</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/spasarto/Microsoft.Extensions.Hosting.Stride3d</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Hosting Stride3d</PackageTags>
+    <PackageReleaseNotes>init</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

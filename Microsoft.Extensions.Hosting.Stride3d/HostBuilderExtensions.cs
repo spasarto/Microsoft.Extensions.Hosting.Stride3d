@@ -8,26 +8,18 @@ namespace Microsoft.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
-        public static IHostBuilder UseStrideLifetime(this IHostBuilder hostBuilder, Game game)
+        public static IHostBuilder UseStrideLifetime(this IHostBuilder hostBuilder)
         {
-            return hostBuilder.ConfigureServices((context, collection) => collection.AddSingleton<IHostLifetime>(new StrideLifetime(game)));
+            return hostBuilder.ConfigureServices((context, collection) =>
+            {
+                collection.AddSingleton<Game, Game>();
+                collection.AddSingleton<IHostLifetime, StrideLifetime<Game>>();
+            });
         }
 
-        public static IHostBuilder UseStrideLifetime<TGame>(this IHostBuilder hostBuilder)
-            where TGame : Game
+        public static Task RunStrideAsync(this IHostBuilder hostBuilder, CancellationToken cancellationToken = default)
         {
-            return hostBuilder.ConfigureServices((context, collection) => collection.AddSingleton<IHostLifetime, StrideLifetime<TGame>>());
-        }
-
-        public static Task RunStrideAsync(this IHostBuilder hostBuilder, Game game, CancellationToken cancellationToken = default)
-        {
-            return hostBuilder.UseStrideLifetime(game).Build().RunAsync(cancellationToken);
-        }
-
-        public static Task RunStrideAsync<TGame>(this IHostBuilder hostBuilder, CancellationToken cancellationToken = default)
-            where TGame : Game
-        {
-            return hostBuilder.UseStrideLifetime<TGame>().Build().RunAsync(cancellationToken);
+            return hostBuilder.UseStrideLifetime().Build().RunAsync(cancellationToken);
         }
     }
 }
