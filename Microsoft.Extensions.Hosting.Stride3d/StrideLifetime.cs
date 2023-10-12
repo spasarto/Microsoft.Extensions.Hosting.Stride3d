@@ -35,6 +35,10 @@ namespace Microsoft.Extensions.Hosting.Stride
                     {
                         _applicationLifetime.StopApplication();
                     };
+                    _game.Exiting += (p, d) =>
+                    {
+                        _applicationLifetime.StopApplication();
+                    };
                 };
                 _game.Run(_gameContextProvider.GameContext);
             });
